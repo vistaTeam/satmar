@@ -1,0 +1,183 @@
+body{
+font-family: 'Assistant', sans-serif;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+:focus {
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color:#eb6469 !important;
+}
+
+.form-control:focus, .form-control:active {
+  background: transparent;
+  background-color:transparent;
+
+}
+
+.text-font-names{
+font-family: 'Assistant', sans-serif;
+font-size: 17px;
+font-weight: 700;
+}
+
+.text-font-address{
+font-family: 'Assistant', sans-serif;
+font-size: 15px;
+font-weight: 600;
+}
+
+.curser-hover{
+cursor: pointer;
+}
+
+.curser-hover:hover{
+background-color: rgb(247, 247, 247);
+}
+
+.btn-pages{
+    font-family: 'Assistant', sans-serif;
+    margin: 7px;
+    font-size: 25px;
+    padding: 12px;
+}
+
+.assistant-font{
+font-family: 'Assistant', sans-serif;
+}
+
+
+.flex{
+    display: flex;
+}
+
+.select-width{
+    width: 100%;
+}
+.total-results{
+    font-family: 'Assistant', sans-serif;
+    margin: 7px;
+    font-size: 15px;
+    padding: 12px;
+    font-weight: 600;
+    background-color: rgb(247, 247, 247);
+    text-align: center;
+}
+
+.mainTitle{
+font-family: 'Assistant', sans-serif;
+}
+
+.no-results{
+font-family: 'Assistant', sans-serif;
+text-align: center;
+font-size: 15px;
+background-color: rgb(248, 191, 202);
+padding: 10px;
+}
+
+.modal-name-title{
+font-family: 'Assistant', sans-serif;
+font-weight: 700;
+font-size: 25px;
+background-color: rgb(247, 247, 247);
+padding: 2px 25px 2px 25px;
+}
+
+.details-name{
+font-family: 'Assistant', sans-serif;
+font-weight: 600;
+font-size: 18px;
+margin: 2px 10px 2px 10px;
+}
+
+.name{
+font-size: 20px;
+font-weight: 700;
+}
+
+.icon-number{
+color: #34c38f;
+}
+
+.phone-title{
+font-family: 'Assistant', sans-serif;
+font-size: 16px;
+}
+
+.phone-number{
+font-family: 'Assistant', sans-serif;
+font-size: 18px;
+font-weight: 700;
+}
+
+.text-notes{
+font-family: 'Assistant', sans-serif;
+}
+
+.type{
+background-color: #34c38f;
+color: white;
+padding: 2px 15px 2px 15px;
+text-align: left;
+left: 0px;
+}
+
+.btn-edit-delete{
+margin: 0px 30px 0px 30px;
+}
+
+.margin-button{
+  margin: 2px;
+  font-family: 'Assistant', sans-serif;
+}
+
+.name-all-style{
+font-family: 'Assistant', sans-serif;
+text-align: center;
+font-size: 18px;
+font-weight: 700;
+background: #34c38f;
+color: white;
+padding: 5px;
+}
+
+
+.margin-top-notes{
+  margin-top: 20px;
+}
+
+.error-name{
+  color: #eb6469;
+  margin: 10px;
+  text-align: center;
+  font-family: 'Assistant', sans-serif;
+}
+
+.error-download{
+  color: #eb6469;
+  text-align: center;
+  font-weight: 700;
+  font-family: 'Assistant', sans-serif;
+}

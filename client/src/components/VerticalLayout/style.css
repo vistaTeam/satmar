@@ -1,0 +1,49 @@
+.title-menu{
+font-size: 20px;
+font-family: 'Assistant', sans-serif;
+font-weight: 600;
+}
+
+.nav-item-style{
+font-family: 'Assistant', sans-serif;
+font-weight: 500;
+}
+
+.hover-menu-nav:hover{
+background-color: #353c50;
+}
+
+.menu-title{
+font-family: 'Assistant', sans-serif;
+font-weight: 500;
+}
+
+.assistant{
+font-family: 'Assistant', sans-serif;
+}
+
+.margin-left{
+    margin-left: 25px;
+}
+
+.main-main-title{
+font-family: 'Assistant', sans-serif;
+color:#34c38f;
+font-weight: 700;
+font-size: 20px;
+}
+
+.name-title{
+    font-family: 'Assistant', sans-serif;
+    color:#34c38f; 
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.change-title{
+    color:#34c38f; 
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+
+}

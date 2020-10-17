@@ -1,0 +1,101 @@
+body{
+    font-family: 'Assistant', sans-serif;
+}
+
+.welcome-text{
+    font-family: 'Assistant', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.welcome-second-text{
+    font-family: 'Assistant', sans-serif;
+    font-size: 15px;
+}
+
+.welcome-third-text{
+    font-family: 'Assistant', sans-serif;
+    font-size: 15px;
+    line-height: 1.5px;
+    margin-top: -20px;
+}
+
+.assistant{
+    font-family: 'Assistant', sans-serif;
+}
+
+.register-text{
+    font-size: 16px;
+}
+
+.forget-text{
+    font-size: 16px;
+    padding: 5px;
+}
+
+.forget-text:hover{
+    background-color: rgb(243, 243, 243);
+}
+
+.login-back-text{
+background-color: #34c38f;
+color: white;
+}
+
+
+.email-send-successfully{
+    font-size: 16px;
+    font-family: 'Assistant', sans-serif;
+    color: #34c38f;
+}
+
+.register-send-successfully{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Assistant', sans-serif;
+    color: #34c38f;
+    text-align: center;
+}
+
+.email-send-error{
+    font-size: 16px;
+    font-family: 'Assistant', sans-serif;
+    color: #eb6469;
+}
+
+.login-error{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Assistant', sans-serif;
+    color: #eb6469;
+}
+
+.danger-settings{
+    text-align: center;
+    color: #f46a6a;
+    background-color: rgba(244, 106, 106, 0.18);
+    padding: 5px;
+    border-radius: 150px;
+}
+
+.text-align-centre{
+    text-align: center;
+}
+
+.curser-hover-settings{
+    cursor: pointer;
+    transition: 0.5s;
+    }
+    
+.curser-hover-settings:hover{
+    transform: scale(1.15);
+}
+
+.hover-delete{
+    cursor: pointer;
+}
+.hover-delete:hover{
+color: #eb6469;
+}
+
