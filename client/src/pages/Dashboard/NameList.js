@@ -392,11 +392,11 @@ export default class NameList extends Component {
                                         </td>
 
                                         <td>
-                                         <div className='text-font-address'>{name.homeMobile || '----'}</div>
+                                         <div className='text-font-address'>{name.mobile || '----'}</div>
                                         </td>
 
                                         <td>
-                                            <div className='text-font-address'>{name.mobile || '----'}</div>
+                                            <div className='text-font-address'>{name.homeMobile || '----'}</div>
                                         </td>
                                         </tr>
                                 )}
