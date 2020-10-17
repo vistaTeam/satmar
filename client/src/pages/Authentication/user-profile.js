@@ -18,10 +18,7 @@ import http from "./http-common";
 
 const UserProfile = (props) => { 
 
-    const [email, setemail] = useState("");
-    const [name, setname] = useState("");
-    const [password, setpassword] = useState("");
-    const [id, setid] = useState('')
+    const [account, setAccount] = useState({});
     const [succsessName, setsuccsessName] = useState('')
     const [errorName, seterrorName] = useState('')
     const [succsessEmail, setsuccsessEmail] = useState('')
@@ -31,34 +28,23 @@ const UserProfile = (props) => {
     const [idx, setidx] = useState(1);
 
    useEffect(() => {
-           if(localStorage.getItem("authUser"))
-           {
-             const obj = JSON.parse(localStorage.getItem("authUser"));
-             if(process.env.REACT_APP_DEFAULTAUTH === 'firebase')
-             { 
-                setname(obj.name);
-                setemail(obj.email);
-                setpassword(obj.password)
-                setid(obj._id);
-             }
-              else if((process.env.REACT_APP_DEFAULTAUTH === 'fake') || (process.env.REACT_APP_DEFAULTAUTH === 'jwt'))
-             {
-                setname(obj.name);
-                setemail(obj.email);
-                setpassword(obj.password);
-                setid(obj._id);
 
-             }               
-           }
+    var accountID = JSON.parse(window.localStorage.getItem("authUser"))
+    http.get(`/users/finduserbyid/${accountID}`)
+    .then(res =>{
+        const account = res.data
+        setAccount(account);
+    })
+    .catch(err=>{console.log(err);})
+         
+           
       },[props.success]);
 
    const changeName=(event,values)=>{
 
-    http.post(`/users/changename/${id}`, {values})
+    http.post(`/users/changename/${account._id}`, {values})
     .then(res => {
-        window.localStorage.removeItem('authUser');
-        window.localStorage.setItem('authUser', JSON.stringify(res.data));
-        setname(values.name);
+        setAccount(res.data);
         setsuccsessName('שם הוחלף בהצלחה!')
         seterrorName('')
        })
@@ -70,12 +56,9 @@ const UserProfile = (props) => {
    }
 
    const changeEmail = (event,values)=>{
-
-    http.post(`/users/changeemail/${id}`, {values})
+    http.post(`/users/changeemail/${account._id}`, {values})
     .then(res => {
-        window.localStorage.removeItem('authUser');
-        window.localStorage.setItem('authUser', JSON.stringify(res.data));
-        setemail(values.email);
+        setAccount(res.data);
         setsuccsessEmail('אימייל הוחלף בהצלחה!')
         seterrorEmail('')
 
@@ -90,7 +73,7 @@ const UserProfile = (props) => {
 
    const changePassword = (event,values)=>{
 
-    if (values.oldPassword != password) {
+    if (values.oldPassword != account.password) {
         setsuccsessPassword('')
         return seterrorPassword('סיסמא שהזנת לא נכונה!')
     }
@@ -99,11 +82,9 @@ const UserProfile = (props) => {
         return seterrorPassword('הסיסמא החדשה שהזנת לא תואם!')
     }
 
-    http.post(`/users/changepassword/${id}`, {values})
+    http.post(`/users/changepassword/${account._id}`, {values})
     .then(res => {
-        window.localStorage.removeItem('authUser');
-        window.localStorage.setItem('authUser', JSON.stringify(res.data));
-        setpassword(values.newPassword);
+        setAccount(res.data);
         setsuccsessPassword('סיסמא הוחלף בהצלחה!')
         seterrorPassword('')
        })
@@ -135,9 +116,9 @@ const UserProfile = (props) => {
                                             </div>
                                             <Media body className="align-self-center">
                                                 <div className="text-muted">
-                                                    <h5 className='assistant name-title'>{name}</h5>
-                                                    <p className="mb-0 assistant">{name}</p>
-                                                    <p className="mb-1 assistant">{email}</p>
+                                                    <h5 className='assistant name-title'>{account.name}</h5>
+                                                    <p className="mb-0 assistant">{account.name}</p>
+                                                    <p className="mb-1 assistant">{account.email}</p>
                                                 </div>
                                             </Media>
                                         </Media>
@@ -153,7 +134,7 @@ const UserProfile = (props) => {
                             <CardBody>
                                <AvForm className="form-horizontal assistant" onValidSubmit={(e,v) => { changeName(e,v) }}>
                                     <div className="form-group assistant">
-                                         <AvField name="name" label="שם" value={name} className="form-control" placeholder="הכנס שם..." type="text" required />
+                                         <AvField name="name" label="שם" value={account.name} className="form-control" placeholder="הכנס שם..." type="text" required />
                                     </div>
                                      <div className="text-center mt-4 assistant">
                                          <Button type="submit" color="danger">שנה שם</Button>
@@ -172,7 +153,7 @@ const UserProfile = (props) => {
                             <CardBody>
                                <AvForm className="form-horizontal assistant" onValidSubmit={(e,v) => { changeEmail(e,v) }}>
                                     <div className="form-group assistant">
-                                         <AvField name="email" label="אימייל" value={email} className="form-control" placeholder="הכנס אימייל..." type="text" required />
+                                         <AvField name="email" label="אימייל" value={account.email} className="form-control" placeholder="הכנס אימייל..." type="text" required />
                                     </div>
                                      <div className="text-center mt-4 assistant">
                                          <Button type="submit" color="danger">שנה אימייל</Button>
