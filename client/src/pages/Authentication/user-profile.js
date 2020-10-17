@@ -35,7 +35,10 @@ const UserProfile = (props) => {
         const account = res.data
         setAccount(account);
     })
-    .catch(err=>{console.log(err);})
+    .catch(err=>{
+        window.localStorage.clear()
+		window.location.replace('/')
+    })
          
            
       },[props.success]);

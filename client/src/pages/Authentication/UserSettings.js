@@ -60,7 +60,10 @@ export default class UserSettings extends Component {
             const account = res.data
             this.setState({account: account});
         })
-        .catch(err=>{console.log(err);})
+        .catch(err=>{
+            window.localStorage.clear()
+            window.location.replace('/')
+        })
 
         if (this.state.account.administrator == false) {
             window.location.replace('/') 

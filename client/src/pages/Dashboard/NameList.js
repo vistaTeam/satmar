@@ -101,7 +101,10 @@ export default class NameList extends Component {
             account = res.data
             this.setState({account: account})
         })
-        .catch(err=>{console.log(err);})
+        .catch(err=>{
+            window.localStorage.clear()
+            window.location.replace('/')
+        })
     }
 
     getDataFromDB=()=>{

@@ -25,7 +25,10 @@ const LockScreen = (props) => {
         const account = res.data
         setAccount(account);
     })
-    .catch(err=>{console.log(err);})
+    .catch(err=>{
+        window.localStorage.clear()
+		window.location.replace('/')
+    })
 
 
     const unlock = (e, v)=>{
