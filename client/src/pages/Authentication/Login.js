@@ -70,6 +70,12 @@ export class Login extends Component{
             .catch(error =>{console.log(error);})
             
             if (account.entryPermit == true) {
+                    if (account.administrator == true) {
+                        window.localStorage.setItem("pointName", "hgdksnSHJS524JSBHAkxc7423c")
+                    }
+                    else{
+                        window.localStorage.setItem("pointName", 'hgdgslo59acndJSBHAkxc7423c')
+                    }
                     window.localStorage.setItem("authUser", JSON.stringify(account._id))
                     window.localStorage.setItem("setupTime", Date.now())
                     window.location.replace('/') 

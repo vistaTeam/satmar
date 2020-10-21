@@ -17,7 +17,8 @@ const SidebarContent = (props) => {
 
         
     const showUserSettings=()=>{
-        if (account.administrator == true) {
+        var accountAdministrator = window.localStorage.getItem("pointName")
+        if (accountAdministrator == 'hgdksnSHJS524JSBHAkxc7423c') {
             return(
             <li>
                 <Link to="user-settings" className=" waves-effect">

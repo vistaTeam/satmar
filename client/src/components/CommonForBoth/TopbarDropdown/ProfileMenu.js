@@ -47,10 +47,10 @@ const ProfileMenu = (props) => {
                         {/* <DropdownItem tag="a" href="#"><span className="badge badge-success float-right">11</span><i className="mdi mdi-settings font-size-17 align-middle mr-1"></i>{props.t('Settings')}</DropdownItem> */}
                         <DropdownItem tag="a" href="auth-lock-screen"><i className="bx bx-lock-open font-size-16 align-middle mr-1"></i>{props.t('נעילת מסך')}</DropdownItem>
                         <div className="dropdown-divider"></div>
-                        <Link to="/logout" className="dropdown-item">
+                        <div className="dropdown-item" onClick={_=>{window.localStorage.clear(); window.location.replace('/');}}>
                             <i className="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i>
                             <span>{props.t('התנתקות')}</span>
-                        </Link>
+                        </div>
                     </DropdownMenu>
                 </Dropdown>
             </React.Fragment>

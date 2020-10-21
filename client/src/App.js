@@ -27,11 +27,6 @@ const App = (props) => {
 	if (window.localStorage.getItem('authUser')) {
 
 	var accountID = JSON.parse(window.localStorage.getItem('authUser'))
-
-	if (accountID.email) {
-		window.localStorage.clear()
-		window.location.replace('/')
-	}
 	
 	var account =  {};
 	http.get(`/users/finduserbyid/${accountID}`)
@@ -61,17 +56,17 @@ const App = (props) => {
 
 
 	if (account.rememberAccount == false) {
-		var hours = 4; // Reset when storage is more than 4hours
+		var hours = 3.5; // Reset when storage is more than 3.5 hours
 		var now = Date.now();
 		var getTime = localStorage.getItem('setupTime')
 		if (getTime == null) {
-			localStorage.setItem('setupTime', now)}
+			window.localStorage.setItem('setupTime', now)}
 		else if (now - hours*60*60*1000 > getTime) {
-			localStorage.clear()
+			window.localStorage.clear()
 			window.location.replace('/')
 		}
 		else{
-			localStorage.setItem('setupTime', now)}
+			window.localStorage.setItem('setupTime', now)}
 	}}
 	
 
