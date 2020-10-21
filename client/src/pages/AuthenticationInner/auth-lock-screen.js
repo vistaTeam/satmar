@@ -9,7 +9,7 @@ import http from "../../http-common";
 import { Container, Row, Col, CardBody, Card, Button } from "reactstrap";
 
 // import images
-import profileImg from "../../assets/images/profile-img.png";
+import profileImg from "../../assets/images/verification-img.png";
 import logoImg from "../../assets/images/logo.svg";
 import avatar from "../../assets/images/users/avatar-1.jpg";
 
