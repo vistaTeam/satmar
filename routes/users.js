@@ -43,11 +43,13 @@ router.route('/deleteuser/:id').delete((req, res)=>{
 
 
 router.route('/changename/:id').post((req, res)=>{
+    console.log(req.params.id);
     User.findById(req.params.id)
     .then( user => {
+        console.log(user);
         user.name = req.body.values.name
         user.save()
-        .then(user=> res.json(user))
+        .then(user=> res.json(user), console.log(user))
         .catch(err => res.status(400).json('eror ' + err))
     })
     .catch(err => res.status(400).json('eror ' + err))

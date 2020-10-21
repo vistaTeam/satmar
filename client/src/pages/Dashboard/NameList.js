@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col, Input, FormGroup, Button, Card, CardBody, Table, Label, Badge, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledTooltip, Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Select from "react-select";
-import http from "./http-common";
+import axiox from 'axios'
+// import http from "./http-common";
 import Lottie from 'react-lottie';
 import animationData from './9633-loading.json';
 import AddName from './AddName.js';
@@ -96,14 +97,14 @@ export default class NameList extends Component {
         
         var accountID = JSON.parse(window.localStorage.getItem("authUser"))
         var account =  {};
-        http.get(`/users/finduserbyid/${accountID}`)
+        axiox.get(`/users/finduserbyid/${accountID}`)
         .then(res =>{
             account = res.data
             this.setState({account: account})
         })
         .catch(err=>{
-            window.localStorage.clear()
-            window.location.replace('/')
+            // window.localStorage.clear()
+            // window.location.replace('/')
         })
     }
 
@@ -113,7 +114,7 @@ export default class NameList extends Component {
         this.setState({searchInput: ''})
 
 
-        http.get('/names/')
+        axiox.get('/names/')
         .then(res => {
             this.setState({data: res.data})
             this.sortAndSetData(this.state.data)
@@ -259,7 +260,7 @@ export default class NameList extends Component {
 
     deleteName=()=>{
         this.setState({confirm_both: false})
-        http.delete(`/names/delete/${this.state.nameDetails._id}`)
+        axiox.delete(`/names/delete/${this.state.nameDetails._id}`)
         .then(res => {
             this.setState({modal: !this.state.modal})
             this.setState({success_dlg: true})

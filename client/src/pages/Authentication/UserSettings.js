@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import http from "./http-common";
+// import http from "./http-common";
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Input, FormGroup, Button, Card, CardBody, Table, Label, Badge, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledTooltip, Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -55,7 +56,7 @@ export default class UserSettings extends Component {
     async componentDidMount(){
 
         var accountID = JSON.parse(window.localStorage.getItem("authUser"))
-        await http.get(`/users/finduserbyid/${accountID}`)
+        await axios.get(`/users/finduserbyid/${accountID}`)
         .then(res =>{
             const account = res.data
             this.setState({account: account});
@@ -75,7 +76,7 @@ export default class UserSettings extends Component {
     }
 
     getDataFromDb=()=>{
-        http.get('/users').then(res =>{this.setState({users: res.data}, this.setState({showUsers: res.data}))})
+        axios.get('/users').then(res =>{this.setState({users: res.data}, this.setState({showUsers: res.data}))})
     }
 
     searchUser=(s)=>{
@@ -133,7 +134,7 @@ export default class UserSettings extends Component {
         var user = this.state.users.filter(e => e._id == id);
         user = user[0];
         user.entryPermit = !user.entryPermit
-        http.post(`/users/changeStatus/${user._id}`, {user})
+        axios.post(`/users/changeStatus/${user._id}`, {user})
         .then(res =>{
             this.getDataFromDb()
             Notiflix.Notify.Success('השינוי נשמר במערכת!');
@@ -151,7 +152,7 @@ export default class UserSettings extends Component {
         var user = this.state.users.filter(e => e._id == id);
         user = user[0];
         user.allowedToDownload = !user.allowedToDownload
-        http.post(`/users/changeStatus/${user._id}`, {user})
+        axios.post(`/users/changeStatus/${user._id}`, {user})
         .then(res =>{
             this.getDataFromDb()
             Notiflix.Notify.Success('השינוי נשמר במערכת!');
@@ -168,7 +169,7 @@ export default class UserSettings extends Component {
         var user = this.state.users.filter(e => e._id == id);
         user = user[0];
         user.allowedToEdit= !user.allowedToEdit
-        http.post(`/users/changeStatus/${user._id}`, {user})
+        axios.post(`/users/changeStatus/${user._id}`, {user})
         .then(res =>{
             this.getDataFromDb()
             Notiflix.Notify.Success('השינוי נשמר במערכת!');
@@ -188,7 +189,7 @@ export default class UserSettings extends Component {
 
         if (user.administrator == true) {
             user.administrator = false
-            http.post(`/users/changeStatus/${user._id}`, {user})
+            axios.post(`/users/changeStatus/${user._id}`, {user})
             .then(res =>{
                 this.getDataFromDb()
                 Notiflix.Notify.Success('השינוי נשמר במערכת!');
@@ -211,7 +212,7 @@ export default class UserSettings extends Component {
         user.entryPermit = true;
         user.administrator = true;
 
-        http.post(`/users/changeStatus/${user._id}`, {user})
+        axios.post(`/users/changeStatus/${user._id}`, {user})
         .then(res =>{
             this.getDataFromDb()
             Notiflix.Notify.Success('השינוי נשמר במערכת!');
@@ -233,7 +234,7 @@ export default class UserSettings extends Component {
 
     deleteTheUser=()=>{
         this.setState({confirm_delete: false})
-        http.delete(`/users/deleteuser/${this.state.tempUserId}`)
+        axios.delete(`/users/deleteuser/${this.state.tempUserId}`)
         .then(res =>{
             this.getDataFromDb()
             Notiflix.Notify.Warning('המשתמש נמחק בהצלחה!');

@@ -5,7 +5,8 @@ import './style.css'
 import MetisMenu from "metismenujs";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import http from "../../http-common";
+import axios from 'axios';
+// import http from "../../http-common";
 
 
 //i18n
@@ -36,7 +37,7 @@ const SidebarContent = (props) => {
 
         var accountID = JSON.parse(window.localStorage.getItem("authUser"))
         var account =  {};
-        http.get(`/users/finduserbyid/${accountID}`)
+        axios.get(`/users/finduserbyid/${accountID}`)
         .then(res =>{
             account = res.data
             setAccount(account);

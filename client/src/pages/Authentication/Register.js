@@ -11,7 +11,8 @@ import { registerUser,apiError,registerUserFailed } from "../../store/actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import emailjs from 'emailjs-com';
-import http from "./http-common";
+// import http from "./http-common";
+import axios from 'axios';
 
 // import images
 import profileImg from "../../assets/images/verification-img.png";
@@ -165,7 +166,7 @@ const Register = (props) => {
     }
 
 
-    http.get(`/users/finduser/${values.email}`)
+    axios.get(`/users/finduser/${values.email}`)
     .then(res => {
 
       if (JSON.stringify(res.data).includes('email')) {
@@ -176,7 +177,7 @@ const Register = (props) => {
 
       else {
 
-        http.post(`/users/newuser/`, {values})
+        axios.post(`/users/newuser/`, {values})
         .then(res => {
         setanimation(false)
         setshowAnimationSuccess(true)

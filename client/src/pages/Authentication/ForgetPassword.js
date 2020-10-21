@@ -5,7 +5,8 @@ import { Row, Col, Alert, Card, CardBody,Container } from "reactstrap";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import emailjs from 'emailjs-com';
-import http from "./http-common";
+import axios from 'axios';
+// import http from "./http-common";
 
 
 // availity-reactstrap-validation
@@ -81,7 +82,7 @@ const defaultOptions = {
   function handleValidSubmit(event, values) {
     setForm(false)
     setanimation(true)
-    http.get(`/users/finduser/${values.email}`)
+    axios.get(`/users/finduser/${values.email}`)
     .then(res => {
       var templateParams = {email: res.data[0].email,
                             name: res.data[0].name,

@@ -5,7 +5,8 @@ import { Row, Col, CardBody, Card, Alert,Container } from "reactstrap";
 // Redux
 import { connect } from 'react-redux';
 import { withRouter, Link, Route, Redirect } from 'react-router-dom';
-import http from "./http-common";
+// import http from "./http-common";
+import axios from 'axios'
 
 
 // availity-reactstrap-validation
@@ -59,13 +60,13 @@ export class Login extends Component{
   handleValidSubmit=(event, values)=> {
       this.setState({showForm: false})
       this.setState({showAnimation: true})
-    http.get(`/users/finduser/${values.email}`)
+    axios.get(`/users/finduser/${values.email}`)
     .then(res => {
 
         var account = res.data[0]
         if (res.data[0].password == values.password) {
 
-            http.post(`/users/rememberuser/${account._id}`, {values})
+            axios.post(`/users/rememberuser/${account._id}`, {values})
             .then(res =>{})
             .catch(error =>{console.log(error);})
             
