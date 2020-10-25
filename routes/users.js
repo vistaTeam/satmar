@@ -8,7 +8,7 @@ const { log } = require('console');
 
 router.route('/finduserbyid/:id').get((req, res)=>{
     User.findById(req.params.id)
-    .then(users => res.json(users))
+    .then(user => res.json(user))
     .catch(err => res.status(400).json('Eror' + err))
 });
 

@@ -7,8 +7,8 @@ import { userRoutes , authRoutes } from "./routes/allRoutes";
 
 // Import all middleware
 import Authmiddleware from "./routes/middleware/Authmiddleware";
-// import http from "./http-common";
-import axios from 'axios'
+import http from "./http-common";
+// import axios from 'axios';
 
 
 // layouts Format
@@ -29,36 +29,38 @@ const App = (props) => {
 
 	var accountID = JSON.parse(window.localStorage.getItem('authUser'))
 	
-	var account =  {};
-	axios.get(`/users/finduserbyid/${accountID}`)
+	
+	http.get(`/users/finduserbyid/${accountID}`)
 	.then(res =>{
-		account = res.data
+		setupTime(res.data)
 	})
 
 	.catch(error =>{
 		window.location.replace('/')
 	});
-	
+}
+
+const setupTime=(r)=>{
+	var account = r;
 	var today = new Date();
 	var dd = String(today.getDate()).padStart(2, '0');
 	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 	var yyyy = today.getFullYear();
 	today = dd + '/' + mm + '/' + yyyy;
 
-	axios.post(`/users/lastlogindate/${accountID}`, {today})
+	http.post(`/users/lastlogindate/${accountID}`, {today})
 	.then(res =>{})
 	.catch(error =>{console.log(error);});
 
 	var time = new Date().toLocaleTimeString()
-	axios.post(`/users/lastlogintime/${accountID}`, {time})
+	http.post(`/users/lastlogintime/${accountID}`, {time})
 	.then(res =>{})
 	.catch(error =>{console.log(error);});
 
-
 	if (account.rememberAccount == false) {
-		var hours = 3.5; // Reset when storage is more than 3.5 hours
+		var hours = 4; // Reset when storage is more than 3.5 hours
 		var now = Date.now();
-		var getTime = localStorage.getItem('setupTime')
+		var getTime = window.localStorage.getItem('setupTime')
 		if (getTime == null) {
 			window.localStorage.setItem('setupTime', now)}
 		else if (now - hours*60*60*1000 > getTime) {
