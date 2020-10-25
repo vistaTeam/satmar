@@ -142,7 +142,7 @@ showChanges=()=>{
 
 
 
-                <Col sm="2"></Col>
+                <Col sm="2" className='padding-top'></Col>
                 <Col sm="5">
                 <div className='title-changes'>גירסא חדשה</div>
                 <div className='allName-title'>{this.state.changeData.newData.nameAll}</div>

@@ -52,7 +52,7 @@ const ChangesList = (props) => {
 
 
     const getDataFromDB = ()=>{
-        http.get(`/changes/`)
+        http.get(`/changes/getthechanges/`)
         .then(res =>{
             var resData = res.data.reverse()
             setChangesData(resData);

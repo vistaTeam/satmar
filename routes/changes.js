@@ -7,7 +7,7 @@ const { log } = require('console');
 
 
 
-router.route('/').get((req, res)=>{
+router.route('/getthechanges').get((req, res)=>{
     Change.find()
     .then(changes => res.json(changes))
     .catch(err => res.status(400).json('Eror' + err))

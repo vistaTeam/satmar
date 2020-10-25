@@ -156,7 +156,11 @@ color: #eb6469;
 }
 
 .btn-changes{
-    margin: 15px;
+    margin: 0px 10px 0px 10px;
+}
+
+.padding-top{
+    padding-top: 15px;
 }
 
 
