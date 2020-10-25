@@ -14,8 +14,8 @@ import Breadcrumb from '../../components/Common/Breadcrumb';
 import avatar from '../../assets/images/users/avatar-1.jpg';
 // actions
 import { editProfile } from '../../store/actions';
-// import http from "./http-common";
-import axios from 'axios'
+import http from "./http-common";
+// import axios from 'axios'
 
 const UserProfile = (props) => { 
 
@@ -31,13 +31,12 @@ const UserProfile = (props) => {
    useEffect(() => {
 
     var accountID = JSON.parse(window.localStorage.getItem("authUser"))
-    axios.get(`/users/finduserbyid/${accountID}`)
+    http.get(`/users/finduserbyid/${accountID}`)
     .then(res =>{
         const account = res.data
         setAccount(account);
     })
     .catch(err=>{
-        window.localStorage.clear()
 		window.location.replace('/')
     })
          
@@ -46,7 +45,7 @@ const UserProfile = (props) => {
 
    const changeName=(event,values)=>{
 
-    axios.post(`/users/changename/${account._id}`, {values})
+    http.post(`/users/changename/${account._id}`, {values})
     .then(res => {
         setAccount(res.data);
         setsuccsessName('שם הוחלף בהצלחה!')
@@ -60,7 +59,7 @@ const UserProfile = (props) => {
    }
 
    const changeEmail = (event,values)=>{
-    axios.post(`/users/changeemail/${account._id}`, {values})
+    http.post(`/users/changeemail/${account._id}`, {values})
     .then(res => {
         setAccount(res.data);
         setsuccsessEmail('אימייל הוחלף בהצלחה!')
@@ -86,7 +85,7 @@ const UserProfile = (props) => {
         return seterrorPassword('הסיסמא החדשה שהזנת לא תואם!')
     }
 
-    axios.post(`/users/changepassword/${account._id}`, {values})
+    http.post(`/users/changepassword/${account._id}`, {values})
     .then(res => {
         setAccount(res.data);
         setsuccsessPassword('סיסמא הוחלף בהצלחה!')

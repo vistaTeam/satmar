@@ -7,7 +7,8 @@ import { userRoutes , authRoutes } from "./routes/allRoutes";
 
 // Import all middleware
 import Authmiddleware from "./routes/middleware/Authmiddleware";
-import http from "./http-common";
+// import http from "./http-common";
+import axios from 'axios'
 
 
 // layouts Format
@@ -29,13 +30,12 @@ const App = (props) => {
 	var accountID = JSON.parse(window.localStorage.getItem('authUser'))
 	
 	var account =  {};
-	http.get(`/users/finduserbyid/${accountID}`)
+	axios.get(`/users/finduserbyid/${accountID}`)
 	.then(res =>{
 		account = res.data
 	})
 
 	.catch(error =>{
-		window.localStorage.clear()
 		window.location.replace('/')
 	});
 	
@@ -45,12 +45,12 @@ const App = (props) => {
 	var yyyy = today.getFullYear();
 	today = dd + '/' + mm + '/' + yyyy;
 
-	http.post(`/users/lastlogindate/${accountID}`, {today})
+	axios.post(`/users/lastlogindate/${accountID}`, {today})
 	.then(res =>{})
 	.catch(error =>{console.log(error);});
 
 	var time = new Date().toLocaleTimeString()
-	http.post(`/users/lastlogintime/${accountID}`, {time})
+	axios.post(`/users/lastlogintime/${accountID}`, {time})
 	.then(res =>{})
 	.catch(error =>{console.log(error);});
 
@@ -67,7 +67,8 @@ const App = (props) => {
 		}
 		else{
 			window.localStorage.setItem('setupTime', now)}
-	}}
+	}
+}
 	
 
 

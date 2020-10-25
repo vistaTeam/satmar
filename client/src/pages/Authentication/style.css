@@ -2,6 +2,10 @@ body{
     font-family: 'Assistant', sans-serif;
 }
 
+.assistant{
+    font-family: 'Assistant', sans-serif;
+}
+
 .welcome-text{
     font-family: 'Assistant', sans-serif;
     font-weight: 700;
@@ -98,4 +102,61 @@ color: white;
 .hover-delete:hover{
 color: #eb6469;
 }
+
+.title-changes{
+    text-align: center;
+    font-weight: 700;
+    padding: 5px;
+    max-width: 150px;
+    background-color: #eb6469;
+    font-size: 16px;
+    font-family: 'Assistant', sans-serif;
+    color: white;
+}
+
+.allName-title{
+    font-family: 'Assistant', sans-serif;
+    font-weight: 700;
+    font-size: 23px;
+    margin-top: 10px;
+}
+
+.type-title{
+    font-family: 'Assistant', sans-serif;
+    background-color: #34c38f;
+    color: white;
+    padding: 2px;
+    border-radius: 150px;
+    font-size: 16px;
+    max-width: 80px;
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+.father-style{
+    font-family: 'Assistant', sans-serif;
+    font-size: 15px;
+}
+
+.rows-style{
+    font-family: 'Assistant', sans-serif;
+    margin-top: 20px;
+}
+
+.title-rows{
+    font-size: 18px;
+    font-weight: 700;
+    padding-right: 5px;
+    font-family: 'Assistant', sans-serif;
+}
+.text-rows{
+    font-size: 15px;
+    font-family: 'Assistant', sans-serif;
+}
+
+.btn-changes{
+    margin: 15px;
+}
+
 

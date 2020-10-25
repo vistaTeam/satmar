@@ -62,8 +62,8 @@ export default class UserSettings extends Component {
             this.setState({account: account});
         })
         .catch(err=>{
-            window.localStorage.clear()
             window.location.replace('/')
+            
         })
 
         if (this.state.account.administrator == false) {
@@ -300,7 +300,7 @@ export default class UserSettings extends Component {
                 <React.Fragment>
                 <div className="page-content">
                     <Container fluid>
-                        <Breadcrumbs title="רשימת אנ''ש דחסידי סאטמאר בארה''ק"/>
+                        <Breadcrumbs title="הגדרות משתמשים"/>
                         <Row>
                             <Col xs="12">
                                 <Card>

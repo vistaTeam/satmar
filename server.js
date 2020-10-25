@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const app = express();
 
 
-
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 
@@ -30,6 +29,9 @@ app.use('/names', namesRouter)
 
 const usersRouter = require('./routes/users');
 app.use('/users', usersRouter)
+
+const changesRouter = require('./routes/changes');
+app.use('/changes', changesRouter)
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

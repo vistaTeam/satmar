@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, CardTitle, Container, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledTooltip, Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Select from "react-select";
-import http from "./http-common";
+import axios from 'axios'
+// import http from "./http-common";
 
 
 export default class AddName extends Component {
@@ -68,9 +69,21 @@ export default class AddName extends Component {
             "note": this.state.note,
         }
         
-        http.post('/names/newname', {obj})
+        axios.post('/names/newname', {obj})
         .then(res => {
             this.props.addNewName(this.state.allName)
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = dd + '/' + mm + '/' + yyyy;
+            var time = new Date().toLocaleTimeString()
+
+                var data = {newData: obj, byUser: this.props.account, dateOfChange: today, timeOfChange: time, type: 'New'}
+                axios.post('/changes/newchange/', {data})
+                .then(res=>{})
+                .catch(err=>{console.log(err)})
            })
 
         .catch(function (error) {

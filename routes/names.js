@@ -21,7 +21,7 @@ router.route('/delete/:id').delete((req, res)=>{
 
 
 router.route('/newname').post((req, res)=>{
-    var obj =  req.body.obj
+    var obj = req.body.obj
     const newName = new Name(obj)
     newName.save()
     .then(names => res.json(names))

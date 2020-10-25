@@ -7,6 +7,10 @@ import { Redirect } from "react-router-dom";
 // Profile
 import UserProfile from "../pages/Authentication/user-profile";
 import UserSettings from "../pages/Authentication/UserSettings";
+import Changes from "../pages/Authentication/Changes";
+import ChangesDetails from "../pages/Authentication/ChangesDetails";
+
+
 
 
 // Pages Calendar
@@ -173,6 +177,8 @@ const userRoutes = [
 	// // //profile
 	{ path: "/profile", component: UserProfile },
 	{ path: "/user-settings", component: UserSettings },
+	{ path: "/changes", component: Changes },
+	{ path: "/changedetails/:id", component: ChangesDetails },
 
 	// //Ecommerce
 	// { path: "/ecommerce-products", component: EcommerceProducts },

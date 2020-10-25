@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, CardTitle, Container, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledTooltip, Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Select from "react-select";
-import http from "./http-common";
+import axios from 'axios'
+// import http from "./http-common";
 
 
 export default class EditName extends Component {
@@ -51,6 +52,17 @@ export default class EditName extends Component {
 
     updateName=()=>{
         if (this.state.nameInput != ''  && this.state.familyInput != '') {
+
+            var oldData = this.props.nameDetails
+
+            if (this.state.allName != oldData.nameAll || this.state.familyInput != oldData.family ||
+                this.state.selectedTitle.value != oldData.title || this.state.nameInput != oldData.name||
+                this.state.homePhone != oldData.homePhone || this.state.mobile != oldData.mobile||
+                this.state.homeMobile != oldData.homeMobile || this.state.Address != oldData.Address||
+                this.state.selectedGroup.value != oldData.state || this.state.selectedType.value != oldData.type||
+                this.state.email.toLowerCase() != oldData.email || this.state.father != oldData.father ||
+                this.state.note != oldData.note) {
+
         var obj = {
             "nameAll": this.state.allName,
             "family": this.state.familyInput,
@@ -66,19 +78,38 @@ export default class EditName extends Component {
             "father": this.state.father,
             "note": this.state.note,
         }
+        console.log(oldData, obj);
+
         
-        http.post(`/names/updatename/${this.props.nameDetails._id}`, {obj})
+
+        axios.post(`/names/updatename/${this.props.nameDetails._id}`, {obj})
         .then(res => {
             this.props.editSuccess(this.state.allName)
-           })
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = dd + '/' + mm + '/' + yyyy;
+            var time = new Date().toLocaleTimeString()
+
+                var data = {oldData: this.props.nameDetails, newData: obj, byUser: this.props.account, dateOfChange: today, timeOfChange: time, type: 'Change'}
+                axios.post('/changes/newchange/', {data})
+                .then(res=>{})
+                .catch(err=>{console.log(err)})
+            })
 
         .catch(function (error) {
             console.log(error)
-            alert(error)
             alert('יש בעיה בשליחת הנתונים, אנא נסה שוב או פנה למוקד התמיכה של VISTA')
         } .bind(this))
 
     }
+    else{
+        this.props.nothingChanged()
+    }
+}
+
     else{
         this.setState({showError: true})
     }

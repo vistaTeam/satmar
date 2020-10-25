@@ -101,7 +101,6 @@ export default class NameList extends Component {
             this.setState({account: account})
         })
         .catch(err=>{
-            window.localStorage.clear()
             window.location.replace('/')
         })
     }
@@ -248,6 +247,11 @@ export default class NameList extends Component {
         this.getDataFromDB()
     }
 
+    nothingChanged=()=>{
+        Notiflix.Notify.Info('לא התבצע שום שינוי!');
+        this.setState({modalEditName: false})
+    }
+
 
 
     handleSelectGroup=(selectedGroup)=>{
@@ -268,6 +272,21 @@ export default class NameList extends Component {
         this.setState({confirm_both: false})
         http.delete(`/names/delete/${this.state.nameDetails._id}`)
         .then(res => {
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = dd + '/' + mm + '/' + yyyy;
+            var time = new Date().toLocaleTimeString()
+
+                var data = {newData: this.state.nameDetails, byUser: this.state.account, dateOfChange: today, timeOfChange: time, type: 'Delete'}
+                debugger
+                http.post('/changes/newchange/', {data})
+                .then(res=>{})
+                .catch(err=>{console.log(err)})
+
+                
             this.setState({modal: !this.state.modal})
             this.setState({success_dlg: true})
             this.setState({dynamic_title: "נמחק"})
@@ -670,7 +689,7 @@ export default class NameList extends Component {
                         <div className='modal-name-title'>הוספת שם חדש</div>
                         </ModalHeader >
 
-                  <AddName addNewName={this.addingNewName}/>
+                    <AddName addNewName={this.addingNewName} account={this.state.account}/>
 
                   <ModalFooter>
                         <button type="button" onClick={() => { this.setState({modalNewName: !this.state.modalNewName}) } } className="btn btn-danger waves-effect assistant-font waves-light">
@@ -686,7 +705,7 @@ export default class NameList extends Component {
                         <div className='modal-name-title'>{this.state.nameDetails.nameAll}</div>
                         </ModalHeader >
 
-                  <EditName editSuccess={this.editSuccess} nameDetails={this.state.nameDetails}/>
+                        <EditName editSuccess={this.editSuccess} nothingChanged={this.nothingChanged} nameDetails={this.state.nameDetails} account={this.state.account}/>
                   
                   <ModalFooter>
                         <button type="button" onClick={() => { this.setState({modalEditName: !this.state.modalEditName}) } } className="btn btn-danger waves-effect assistant-font waves-light">

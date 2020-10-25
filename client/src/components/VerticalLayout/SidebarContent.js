@@ -20,16 +20,19 @@ const SidebarContent = (props) => {
     const showUserSettings=()=>{
         var accountAdministrator = window.localStorage.getItem("pointName")
         if (accountAdministrator == 'hgdksnSHJS524JSBHAkxc7423c') {
-            return(
-            <li>
-                <Link to="user-settings" className=" waves-effect">
-                    <i className="bx bxs-dashboard"></i>
-                    <span className='title-menu'>{props.t('הגדרות משתמשים') }</span>
+            return(<li>
+            <Link to="/#" className="has-arrow waves-effect hover-menu-nav">
+                    <i className="bx bxs-dashboard"></i><span className="badge badge-pill badge-info float-right"></span>
+                    <span className='title-menu'>{props.t('הגדרות מערכת') }</span>
                 </Link>
+                <ul className="sub-menu nav-item-style" aria-expanded="false">
+                    <li><Link to="/user-settings">{props.t('הגדרות משתמשים') }</Link></li>
+                    <li><Link to="/changes">{props.t('שינוים אחרונים') }</Link></li>
+                </ul>
             </li>)
         }
-
     }
+
 
 
     // Use ComponentDidMount and ComponentDidUpdate method symultaniously
@@ -43,7 +46,6 @@ const SidebarContent = (props) => {
             setAccount(account);
         })
         .catch(err=>{
-            window.localStorage.clear()
             window.location.replace('/')
         })
 
@@ -131,7 +133,7 @@ const SidebarContent = (props) => {
                     <li className="menu-title">{props.t('הגדרות') }</li>
 
                     <li>
-                        <Link to="profile" className=" waves-effect">
+                        <Link to="/profile" className=" waves-effect">
                             <i className="bx bx-shape-polygon"></i>
                             <span className='title-menu'>{props.t('הגדרות חשבון') }</span>
                         </Link>

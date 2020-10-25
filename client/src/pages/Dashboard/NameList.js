@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col, Input, FormGroup, Button, Card, CardBody, Table, Label, Badge, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledTooltip, Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Select from "react-select";
-import axiox from 'axios'
-// import http from "./http-common";
+// import axiox from 'axios'
+import http from "./http-common";
 import Lottie from 'react-lottie';
 import animationData from './9633-loading.json';
 import AddName from './AddName.js';
@@ -97,14 +97,13 @@ export default class NameList extends Component {
         
         var accountID = JSON.parse(window.localStorage.getItem("authUser"))
         var account =  {};
-        axiox.get(`/users/finduserbyid/${accountID}`)
+        http.get(`/users/finduserbyid/${accountID}`)
         .then(res =>{
             account = res.data
             this.setState({account: account})
         })
         .catch(err=>{
-            // window.localStorage.clear()
-            // window.location.replace('/')
+            window.location.replace('/')
         })
     }
 
@@ -114,7 +113,7 @@ export default class NameList extends Component {
         this.setState({searchInput: ''})
 
 
-        axiox.get('/names/')
+        http.get('/names/')
         .then(res => {
             this.setState({data: res.data})
             this.sortAndSetData(this.state.data)
@@ -242,6 +241,12 @@ export default class NameList extends Component {
         this.getDataFromDB()
     }
 
+    nothingChanged=()=>{
+        Notiflix.Notify.Info('לא התבצע שום שינוי!');
+        this.setState({modalEditName: false})
+    }
+
+
 
 
     handleSelectGroup=(selectedGroup)=>{
@@ -260,13 +265,28 @@ export default class NameList extends Component {
 
     deleteName=()=>{
         this.setState({confirm_both: false})
-        axiox.delete(`/names/delete/${this.state.nameDetails._id}`)
+        http.delete(`/names/delete/${this.state.nameDetails._id}`)
+
         .then(res => {
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = dd + '/' + mm + '/' + yyyy;
+            var time = new Date().toLocaleTimeString()
+
+                var data = {newData: this.state.nameDetails, byUser: this.state.account, dateOfChange: today, timeOfChange: time, type: 'Delete'}
+                debugger
+                http.post('/changes/newchange/', {data})
+                .then(res=>{})
+                .catch(err=>{console.log(err)})
+
             this.setState({modal: !this.state.modal})
             this.setState({success_dlg: true})
             this.setState({dynamic_title: "נמחק"})
             this.setState({dynamic_description: `${this.state.nameDetails.nameAll} נמחק בהצלחה.`})
             this.getDataFromDB()
+
            })
 
         .catch(function (error) {
@@ -588,7 +608,7 @@ export default class NameList extends Component {
                             <div className="table-responsive">
                                 <Table>
                                     <div>                                        
-                                            <td><i class="bx bx-home bx-sm icon-number m-0"></i></td>
+                                            <td><i className="bx bx-home bx-sm icon-number m-0"></i></td>
                                             <td>
                                                 <h6 className="m-0 text-right phone-title">טלפון בבית:</h6>
                                             </td>
@@ -598,7 +618,7 @@ export default class NameList extends Component {
                                     </div>
 
                                     <div>                                        
-                                            <td><i class="bx bx-mobile-alt bx-sm icon-number m-0"></i></td>
+                                            <td><i className="bx bx-mobile-alt bx-sm icon-number m-0"></i></td>
                                             <td>
                                                 <h6 className="m-0 text-right phone-title">פלאפון:</h6>
                                             </td>
@@ -608,7 +628,7 @@ export default class NameList extends Component {
                                     </div>
 
                                     <div>                                        
-                                            <td><i class="bx bx-mobile-alt bx-sm icon-number m-0"></i></td>
+                                            <td><i className="bx bx-mobile-alt bx-sm icon-number m-0"></i></td>
                                             <td>
                                                 <h6 className="m-0 text-right phone-title">פלאפון בבית:</h6>
                                             </td>
@@ -619,7 +639,7 @@ export default class NameList extends Component {
 
                                     
                                     <div>                                        
-                                            <td><i class="bx bx-mail-send bx-sm icon-number m-0"></i></td>
+                                            <td><i className="bx bx-mail-send bx-sm icon-number m-0"></i></td>
                                             <td>
                                                 <h6 className="m-0 text-right phone-title">אימייל:</h6>
                                             </td>
@@ -629,7 +649,7 @@ export default class NameList extends Component {
                                     </div>
 
                                     <div>                                        
-                                            <td><i class="bx bx bx-notepad bx-sm icon-number m-0"></i></td>
+                                            <td><i className="bx bx bx-notepad bx-sm icon-number m-0"></i></td>
                                             <td>
                                                 <h6 className="m-0 text-right phone-title">הערה:</h6>
                                             </td>
@@ -665,7 +685,7 @@ export default class NameList extends Component {
                         <div className='modal-name-title'>הוספת שם חדש</div>
                         </ModalHeader >
 
-                  <AddName addNewName={this.addingNewName}/>
+                  <AddName addNewName={this.addingNewName} account={this.state.account}/>
 
                   <ModalFooter>
                         <button type="button" onClick={() => { this.setState({modalNewName: !this.state.modalNewName}) } } className="btn btn-danger waves-effect assistant-font waves-light">
@@ -681,7 +701,7 @@ export default class NameList extends Component {
                         <div className='modal-name-title'>{this.state.nameDetails.nameAll}</div>
                         </ModalHeader >
 
-                  <EditName editSuccess={this.editSuccess} nameDetails={this.state.nameDetails}/>
+                  <EditName editSuccess={this.editSuccess} nothingChanged={this.nothingChanged} nameDetails={this.state.nameDetails} account={this.state.account}/>
                   
                   <ModalFooter>
                         <button type="button" onClick={() => { this.setState({modalEditName: !this.state.modalEditName}) } } className="btn btn-danger waves-effect assistant-font waves-light">

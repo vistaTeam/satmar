@@ -26,7 +26,6 @@ const LockScreen = (props) => {
         setAccount(account);
     })
     .catch(err=>{
-        window.localStorage.clear()
 		window.location.replace('/')
     })
 
