@@ -4,6 +4,13 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 
+app.use(function(req, res, next) {
+  if ((req.get('X-Forwarded-Proto') !== 'https')) {
+    res.redirect('https://' + req.get('Host') + req.url);
+  } else
+    next();
+});
+
 
 require('dotenv').config();
 const port = process.env.PORT || 5000;
