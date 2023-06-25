@@ -14,7 +14,7 @@
     "@testing-library/user-event": "^7.1.2",
     "@toast-ui/react-chart": "^1.0.2",
     "@vtaits/react-color-picker": "^0.1.1",
-    "apexcharts": "^3.17.0",
+    "apexcharts": "^3.41.0",
     "availity-reactstrap-validation": "^2.6.1",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
@@ -37,9 +37,8 @@
     "mdbreact": "^4.25.4",
     "metismenujs": "^1.1.0",
     "mkdirp": "^1.0.3",
-    "moment": "2.24.0",
-    "moment-timezone": "^0.5.28",
-    "node-sass": "^4.13.1",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43",
     "notiflix-react": "^1.4.0",
     "nouislider-react": "^3.3.7",
     "react": "^16.13.0",
@@ -58,7 +57,7 @@
     "react-csv": "^2.0.3",
     "react-datepicker": "^2.14.0",
     "react-dom": "^16.13.0",
-    "react-draft-wysiwyg": "^1.14.4",
+    "react-draft-wysiwyg": "^1.15.0",
     "react-dropzone": "^10.2.1",
     "react-i18next": "^9.0.10",
     "react-image-lightbox": "^5.1.1",
@@ -90,8 +89,8 @@
     "toastr": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -112,5 +111,8 @@
   },
   "resolutions": {
     "moment": "2.24.0"
+  },
+  "devDependencies": {
+    "sass": "^1.63.6"
   }
 }

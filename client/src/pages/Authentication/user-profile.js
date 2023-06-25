@@ -54,7 +54,7 @@ const UserProfile = (props) => {
     .catch(function (error) {
         seterrorName('תקלה במערכת! נסה מאוחר יותר!')
         setsuccsessName('')
-    } .bind(this))
+    })
     
    }
 
@@ -69,7 +69,7 @@ const UserProfile = (props) => {
     .catch(function (error) {
         setsuccsessEmail('')
         seterrorEmail('תקלה במערכת! נסה מאוחר יותר!')
-    } .bind(this))
+    })
     
    }
 
@@ -94,7 +94,7 @@ const UserProfile = (props) => {
     .catch(function (error) {
         seterrorPassword('תקלה במערכת! נסה מאוחר יותר!')
         setsuccsessPassword('')
-    } .bind(this))
+    })
     
    }
 
