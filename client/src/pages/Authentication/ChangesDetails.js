@@ -6,17 +6,17 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import Select from "react-select";
 import Lottie from 'react-lottie';
 import animationData from './9633-loading.json';
-import Notiflix from "notiflix-react";
+// import Notiflix from "notiflix-react";
 import Breadcrumbs from '../../components/Common/Breadcrumb';
 import './style.css'
 import http from "./http-common";
 
 
-Notiflix.Notify.Init({
-    fontFamily: 'Assistant',
-    useGoogleFont: true,
-    timeout: 5000
-}); 
+// Notiflix.Notify.Init({
+//     fontFamily: 'Assistant',
+//     useGoogleFont: true,
+//     timeout: 5000
+// }); 
 
 export default class ChangesDetails extends Component {
 
@@ -47,7 +47,7 @@ export default class ChangesDetails extends Component {
 deleteChange=()=>{
     http.delete(`/changes/deletechange/${this.state.changeData._id}`)
     .then(res=>{
-        Notiflix.Notify.Success('השינוי נמחק בהצלחה!');
+        // Notiflix.Notify.Success('השינוי נמחק בהצלחה!');
         window.location.replace('/changes');
     })
     .catch(err=>{console.log(err);})
@@ -59,7 +59,7 @@ recoverData=()=>{
         var obj = d.newData
         http.post('/names/newname', {obj})
         .then(res=>{
-            Notiflix.Notify.Success(`${obj.nameAll} שוחזר בהצלחה!`);
+            // Notiflix.Notify.Success(`${obj.nameAll} שוחזר בהצלחה!`);
             http.delete(`/changes/deletechange/${d._id}`)
             .then(res=>{
                 window.location.replace('/changes');
@@ -75,7 +75,7 @@ recoverData=()=>{
         .then (res=>{
             http.post('/names/newname', {obj})
             .then(res=>{
-            Notiflix.Notify.Success(`${obj.nameAll} שוחזר בהצלחה!`);
+            // Notiflix.Notify.Success(`${obj.nameAll} שוחזר בהצלחה!`);
             http.delete(`/changes/deletechange/${d._id}`)
             .then(res=>{
                 window.location.replace('/changes');

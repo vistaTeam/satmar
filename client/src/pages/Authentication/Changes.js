@@ -3,7 +3,7 @@ import React, { useState , useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Table, Button, UncontrolledTooltip, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
-import Notiflix from "notiflix-react";
+// import Notiflix from "notiflix-react";
 import Lottie from 'react-lottie';
 import animationData from './9633-loading.json';
 
@@ -12,11 +12,11 @@ import Breadcrumbs from '../../components/Common/Breadcrumb';
 import http from "./http-common";
 
 
-Notiflix.Notify.Init({
-    fontFamily: 'Assistant',
-    useGoogleFont: true,
-    timeout: 5000
-}); 
+// Notiflix.Notify.Init({
+//     fontFamily: 'Assistant',
+//     useGoogleFont: true,
+//     timeout: 5000
+// }); 
 
 const defaultOptions = {
     loop: true,
@@ -89,7 +89,7 @@ const ChangesList = (props) => {
             var obj = d.newData
             http.post('/names/newname', {obj})
             .then(res=>{
-                Notiflix.Notify.Success(`${obj.nameAll} שוחזר בהצלחה!`);
+                // Notiflix.Notify.Success(`${obj.nameAll} שוחזר בהצלחה!`);
                 http.delete(`/changes/deletechange/${d._id}`)
                 .then(res=>{
                     getDataFromDB()
@@ -105,7 +105,7 @@ const ChangesList = (props) => {
             .then (res=>{
                 http.post('/names/newname', {obj})
                 .then(res=>{
-                Notiflix.Notify.Success(`${obj.nameAll} שוחזר בהצלחה!`);
+                // Notiflix.Notify.Success(`${obj.nameAll} שוחזר בהצלחה!`);
                 http.delete(`/changes/deletechange/${d._id}`)
                 .then(res=>{
                     getDataFromDB()
@@ -135,7 +135,7 @@ const ChangesList = (props) => {
         .then(res=>{
             setConfirm_delete(false)
             getDataFromDB()
-            Notiflix.Notify.Success('השינוי נמחק בהצלחה!');
+            // Notiflix.Notify.Success('השינוי נמחק בהצלחה!');
         })
         .catch(err=>{console.log(err);})
     }

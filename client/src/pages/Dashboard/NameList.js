@@ -9,7 +9,7 @@ import Lottie from 'react-lottie';
 import animationData from './9633-loading.json';
 import AddName from './AddName.js';
 import EditName from './EditName.js';
-import Notiflix from "notiflix-react";
+// import Notiflix from "notiflix-react";
 import { CSVLink, CSVDownload } from "react-csv";
 
 
@@ -17,11 +17,11 @@ import { CSVLink, CSVDownload } from "react-csv";
 //Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
 
-Notiflix.Notify.Init({
-    fontFamily: 'Assistant',
-    useGoogleFont: true,
-    timeout: 5000
-}); 
+// Notiflix.Notify.Init({
+//     fontFamily: 'Assistant',
+//     useGoogleFont: true,
+//     timeout: 5000
+// }); 
 
 
 const headers = [
@@ -230,19 +230,19 @@ export default class NameList extends Component {
     }
 
     addingNewName=(n)=>{
-        Notiflix.Notify.Success(n +' '+ 'הוסף לרשימה!');
+        // Notiflix.Notify.Success(n +' '+ 'הוסף לרשימה!');
         this.setState({modalNewName: false})
         this.getDataFromDB()
     }
 
     editSuccess=(n)=>{
-        Notiflix.Notify.Success(n +' '+ 'עודכן בהצלחה!');
+        // Notiflix.Notify.Success(n +' '+ 'עודכן בהצלחה!');
         this.setState({modalEditName: false})
         this.getDataFromDB()
     }
 
     nothingChanged=()=>{
-        Notiflix.Notify.Info('לא התבצע שום שינוי!');
+        // Notiflix.Notify.Info('לא התבצע שום שינוי!');
         this.setState({modalEditName: false})
     }
 

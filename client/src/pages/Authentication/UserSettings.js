@@ -7,16 +7,16 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import Select from "react-select";
 import Lottie from 'react-lottie';
 import animationData from './9633-loading.json';
-import Notiflix from "notiflix-react";
+// import Notiflix from "notiflix-react";
 import Breadcrumbs from '../../components/Common/Breadcrumb';
 import './style.css'
 
 
-Notiflix.Notify.Init({
-    fontFamily: 'Assistant',
-    useGoogleFont: true,
-    timeout: 5000
-}); 
+// Notiflix.Notify.Init({
+//     fontFamily: 'Assistant',
+//     useGoogleFont: true,
+//     timeout: 5000
+// }); 
 
 
 const defaultOptions = {
@@ -137,10 +137,10 @@ export default class UserSettings extends Component {
         axios.post(`/users/changeStatus/${user._id}`, {user})
         .then(res =>{
             this.getDataFromDb()
-            Notiflix.Notify.Success('השינוי נשמר במערכת!');
+            // Notiflix.Notify.Success('השינוי נשמר במערכת!');
         })
         .catch(err=>{console.log(err)
-            Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
+            // Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
         })
     }
 
@@ -155,10 +155,10 @@ export default class UserSettings extends Component {
         axios.post(`/users/changeStatus/${user._id}`, {user})
         .then(res =>{
             this.getDataFromDb()
-            Notiflix.Notify.Success('השינוי נשמר במערכת!');
+            // Notiflix.Notify.Success('השינוי נשמר במערכת!');
         })
         .catch(err=>{console.log(err)
-            Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
+            // Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
         })
     }
 
@@ -172,10 +172,10 @@ export default class UserSettings extends Component {
         axios.post(`/users/changeStatus/${user._id}`, {user})
         .then(res =>{
             this.getDataFromDb()
-            Notiflix.Notify.Success('השינוי נשמר במערכת!');
+            // Notiflix.Notify.Success('השינוי נשמר במערכת!');
         })
         .catch(err=>{console.log(err)
-            Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
+            // Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
         })
     }
 
@@ -192,10 +192,10 @@ export default class UserSettings extends Component {
             axios.post(`/users/changeStatus/${user._id}`, {user})
             .then(res =>{
                 this.getDataFromDb()
-                Notiflix.Notify.Success('השינוי נשמר במערכת!');
+                // Notiflix.Notify.Success('השינוי נשמר במערכת!');
             })
             .catch(err=>{console.log(err)
-                Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
+                // Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
             })
         }
         else{
@@ -215,10 +215,10 @@ export default class UserSettings extends Component {
         axios.post(`/users/changeStatus/${user._id}`, {user})
         .then(res =>{
             this.getDataFromDb()
-            Notiflix.Notify.Success('השינוי נשמר במערכת!');
+            // Notiflix.Notify.Success('השינוי נשמר במערכת!');
         })
         .catch(err=>{console.log(err)
-            Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
+            // Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
         })
     }
 
@@ -237,10 +237,10 @@ export default class UserSettings extends Component {
         axios.delete(`/users/deleteuser/${this.state.tempUserId}`)
         .then(res =>{
             this.getDataFromDb()
-            Notiflix.Notify.Warning('המשתמש נמחק בהצלחה!');
+            // Notiflix.Notify.Warning('המשתמש נמחק בהצלחה!');
         })
         .catch(err=>{console.log(err)
-            Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
+            // Notiflix.Notify.Failure('בעייה במערכת נסה שוב מאוחר יותר!')
         })
     }
 
