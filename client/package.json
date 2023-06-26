@@ -89,7 +89,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "node --openssl-legacy-provider build",
     "test": "react-scripts --openssl-legacy-provider  test",
     "eject": "react-scripts --openssl-legacy-provider  eject"
   },
@@ -107,10 +107,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "engines": {
-    "node": "16.14.0",
-    "npm": "8.4.1"
   },
   "resolutions": {
     "moment": "2.24.0"
