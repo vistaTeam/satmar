@@ -108,6 +108,10 @@
       "last 1 safari version"
     ]
   },
+  "engines": {
+    "node": "16.14.0",
+    "npm": "8.4.1"
+  },
   "resolutions": {
     "moment": "2.24.0"
   },
