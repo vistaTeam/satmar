@@ -9,13 +9,13 @@ const { log } = require('console');
 router.route('/finduserbyid/:id').get((req, res)=>{
     User.findById(req.params.id)
     .then(user => res.json(user))
-    .catch(err => res.status(400).json('Eror' + err))
+    .catch(err => res.status(400).json('Error: ' + err))
 });
 
 router.route('/').get((req, res)=>{
     User.find()
     .then(users => res.json(users))
-    .catch(err => res.status(400).json('Eror' + err))
+    .catch(err => res.status(400).json('Error' + err))
 });
 
 router.route('/findUser/:email').get((req, res, next)=>{
@@ -25,9 +25,9 @@ router.route('/findUser/:email').get((req, res, next)=>{
 })
 
 router.route('/newuser').post((req, res)=>{
-    var obj = {"name": req.body.values.name,
-               "email": req.body.values.email.toLowerCase(),
-               "password": req.body.values.password}
+     var obj = {"name": req.body.values.name,
+              "email": req.body.values.email.toLowerCase(),
+              "password": req.body.values.password}
 
     const newUser = new User(obj)
     newUser.save()
@@ -40,6 +40,7 @@ router.route('/deleteuser/:id').delete((req, res)=>{
     .then(()=> res.json('user deleted!!!'))
     .catch(err => res.status(400).json('eror ' + err))
 });
+
 
 
 router.route('/changename/:id').post((req, res)=>{
@@ -68,6 +69,7 @@ router.route('/changeemail/:id').post((req, res)=>{
 
     .catch(err => res.status(400).json('eror ' + err))
 })
+
 
 
 router.route('/changepassword/:id').post((req, res)=>{
@@ -102,10 +104,10 @@ router.route('/lastlogindate/:id').post((req, res)=>{
         user.lastLoginDate = req.body.today
         user.save()
         .then(user=> res.json(user))
-        .catch(err => res.status(400).console.log(err))
+        .catch(err => res.status(400).json({ error: err.message }))
     })
 
-    .catch(err => res.status(400).json('eror ' + err))
+    .catch(err => res.status(400).json({ error: err.message }))
 })
 
 router.route('/lastlogintime/:id').post((req, res)=>{
@@ -114,10 +116,10 @@ router.route('/lastlogintime/:id').post((req, res)=>{
         user.lastLoginTime = req.body.time
         user.save()
         .then(user=> res.json(user))
-        .catch(err => res.status(400).console.log(err))
+        .catch(err => res.status(400).json({ error: err.message }))
     })
 
-    .catch(err => res.status(400).json('eror ' + err))
+    .catch(err => res.status(400).json({ error: err.message }))
 })
 
 router.route('/logged/:id').post((req, res)=>{
@@ -126,9 +128,9 @@ router.route('/logged/:id').post((req, res)=>{
         user.logged = req.body.logged
         user.save()
         .then(user=> res.json(user))
-        .catch(err => res.status(400).console.log(err))
+        .catch(err => res.status(400).json({ error: err.message }))
     })
-    .catch(err => res.status(400).json('eror ' + err))
+    .catch(err => res.status(400).json({ error: err.message }))
 })
 
 
@@ -138,13 +140,13 @@ router.route('/changeStatus/:id').post((req, res)=>{
         user.administrator = req.body.user.administrator;
         user.allowedToEdit = req.body.user.allowedToEdit;
         user.allowedToDownload = req.body.user.allowedToDownload;
-        user.entryPermit = req.body.user.entryPermit
+        user.entryPermit = req.body.user.entryPermit;
         user.save()
         .then(user=> res.json(user))
-        .catch(err => res.status(400).console.log(err))
+        .catch(err => res.status(400).json({ error: err.message }))
     })
 
-    .catch(err => res.status(400).json('eror ' + err))
+    .catch(err => res.status(400).json({ error: err.message }))
 });
 
 
