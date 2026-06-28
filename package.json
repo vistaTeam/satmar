@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "client": "npm run start --prefix client",
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
@@ -26,6 +26,15 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "nodemon": "^2.0.5"
+    "jest": "^29.7.0",
+    "nodemon": "^2.0.5",
+    "supertest": "^6.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"],
+    "moduleFileExtensions": ["js", "json"],
+    "collectCoverageFrom": ["routes/**/*.js"],
+    "coverageDirectory": "coverage"
   }
 }
