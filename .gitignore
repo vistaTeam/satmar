@@ -19,6 +19,10 @@
 .env.test.local
 .env.production.local
 
+# env files — never commit secrets
+.env
+.env.*
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
